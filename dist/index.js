@@ -40,11 +40,20 @@ exports.default = function (robot) {
     _electron.shell.openExternal('https://www.youtube.com/results?search_query=' + matches.query.split(' ').join('+'));
   });
 
+  robot.listen(/^github (.*)$/, {
+    description: "search something on GitHub",
+    usage: 'github <query>'
+  }, function (_ref4) {
+    var matches = _ref4.matches;
+
+    _electron.shell.openExternal('https://github.com/search?q=' + matches.query.split(' ').join('+') + '&ref=opensearch');
+  });
+
   robot.listen(/^facebook (.*)$/, {
     description: "search something on Facebook",
     usage: 'facebook <query>'
-  }, function (_ref4) {
-    var matches = _ref4.matches;
+  }, function (_ref5) {
+    var matches = _ref5.matches;
 
     _electron.shell.openExternal('https://www.facebook.com/search/top/?q=' + matches.query.split(' ').join('%20'));
   });
@@ -52,8 +61,8 @@ exports.default = function (robot) {
   robot.listen(/^wikipedia (.*)$/, {
     description: "search something on Wikipedia",
     usage: 'wikipedia <query>'
-  }, function (_ref5) {
-    var matches = _ref5.matches;
+  }, function (_ref6) {
+    var matches = _ref6.matches;
 
     _electron.shell.openExternal('https://wikipedia.org/wiki/Special:Search/' + matches.query.split(' ').join('%20'));
   });

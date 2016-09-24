@@ -28,6 +28,13 @@ export default robot => {
     shell.openExternal(`https://www.youtube.com/results?search_query=${matches.query.split(' ').join('+')}`)
   })
 
+  robot.listen(/^github (.*)$/, {
+    description: "search something on GitHub",
+    usage: 'github <query>'
+  }, ({ matches }) => {
+    shell.openExternal(`https://github.com/search?q=${matches.query.split(' ').join('+')}&ref=opensearch`)
+  })
+
   robot.listen(/^facebook (.*)$/, {
     description: "search something on Facebook",
     usage: 'facebook <query>'
